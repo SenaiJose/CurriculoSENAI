@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Login</title>
+	<h:outputScript library="script" name="javascript.js" />
+</h:head>
+<h:body>
+	<p:growl widgetVar="growlWV">
+		<p:autoUpdate />
+	</p:growl>
+	<br />
+
+	<div align="center">
+		<h:graphicImage style="width: 50%;" library="images"
+			name="logo-senai.png" />
+	</div>
+	<br />
+
+	<p:toolbar>
+		<f:facet name="left">
+			<h:outputLabel value="Insira seus dados de login" />
+		</f:facet>
+	</p:toolbar>
+	<br />
+
+	<center>
+		<p:panel style="width: 50%;">
+			<h:form>
+				<p:commandLink ajax="true" event="onclick"
+					update="img :form:NC :form:mascara"
+					actionListener="#{alunoIndexMBean.trocaModoSelecionado}">
+					<h:graphicImage id="img" style="width: 15%;" library="images"
+						name="#{alunoIndexMBean.modoSelecionado}.png" />
+				</p:commandLink>
+			</h:form>
+
+			<h:form id="form">
+
+				<p:panelGrid columns="2">
+				
+					<p:outputLabel id="NC"
+						value="Insira seu #{alunoIndexMBean.modoSelecionado eq 'user' ? 'CPF' : 'NIF' }" />
+					<p:inputMask id="mascara" required="true"
+						requiredMessage="CPF ou NIF necessário"
+						onblur="#{alunoIndexMBean.funcaoCPF}"
+						value="#{alunoIndexMBean.cpfOuNif}"
+						mask="#{alunoIndexMBean.modoSelecionado eq 'user' ? '999.999.999-99' : '' }" />
+
+					<p:outputLabel value="Insira sua senha" />
+					<p:password requiredMessage="Senha necessária" required="true" value="#{alunoIndexMBean.senha}" />
+
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="Realizar login" action="#{alunoIndexMBean.fazerLogin()}" />
+			</h:form>
+			<br />
+			<h:form>
+				<p:commandLink action="cadastro?faces-redirect=true">
+					<p:outputLabel value="Não possui cadastro ? Clique aqui !" />
+				</p:commandLink>
+			</h:form>
+		</p:panel>
+		<br />
+	</center>
+	
+</h:body>
+</html>
