@@ -49,6 +49,14 @@ CREATE TABLE usuario(
     FOREIGN KEY (id_turma) REFERENCES turma(id),
     FOREIGN KEY (id_status) REFERENCES status_(id)
 );
+CREATE TABLE TBL_RECUPERAR_SENHA(
+     ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+     ID_USUARIO INTEGER UNIQUE KEY,
+     DT_DATA DATE,
+     TX_PARAMENTRO_DE_RECUPERACAO VARCHAR (200),
+     CONSTRAINT FK_TBL_RECUPERAR_SENHA FOREIGN KEY (ID_USUARIO)
+     REFERENCES usuario (id)
+); 
 ;
 	/*SELECT u.*, c.nome AS nomeCidade, e.nome AS nomeEstado, st.nome AS nomeStatus, cur.nome AS nomeCurso, tur.nome AS nomeTurma FROM usuario AS u 
     INNER JOIN cidade AS c ON c.id = u.id_cidade
