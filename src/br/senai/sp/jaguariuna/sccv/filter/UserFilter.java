@@ -2,8 +2,6 @@ package br.senai.sp.jaguariuna.sccv.filter;
 
 import java.io.IOException;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedProperty;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
